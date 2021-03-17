@@ -1,0 +1,19 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'exercises/style.css' %}">
+<div class="pure-menu pure-menu-horizontal">
+    <a href="/" class="pure-menu-heading pure-menu-link">Exercise database</a>
+    <ul class="pure-menu-list">
+        <li class="pure-menu-item">
+            <a href="/" class="pure-menu-link">Latest exercises</a>
+        </li>
+        {% if user.is_authenticated %}
+            <li class="pure-menu-item">
+                <a href="/profile/{{user.id}}" class="pure-menu-link">My profile</a>
+            </li>
+            <li class="pure-menu-item">
+                <a href="/logout" class="pure-menu-link">Logout</a>
+            </li>
+        {% endif %}
+    </ul>
+</div>
+

@@ -1,0 +1,63 @@
+{% extends "includes/base.html" %}
+{% block content %}
+    <h1>{{profile_user.username}}'s profile</h1>
+    {% if is_me %}
+        <h2>Add new exercise</h2>
+        <form action='/add/' class="pure-form pure-form-stacked" method="POST">
+            {% csrf_token %}
+            <fieldset>
+                <textarea name="description"></textarea><br/>
+                <input class="pure-button pure-button-primary" type="submit" value="Add exercise"/>
+            </fieldset>
+        </form>
+    {% endif %}
+
+    <h2>Exercises</h2>
+
+    <table class="pure-table">
+        <thead>
+            <tr>
+                <th>Date</th><th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for e in exercises %}
+                <tr class="{% cycle 'pure-table-odd' '' %}">
+                    <td>{{e.date}}</td><td>{{e.description}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% if credit_cards %}
+        <h2>Credit card</h2>
+        <table class="pure-table">
+            <thead>
+                <tr>
+                    <th>Number</th><th>Name</th><th>CSV</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for c in credit_cards %}
+                    <tr class="{% cycle 'pure-table-odd' '' %}">
+                        <td>{{c.number}}</td><td>{{c.name}}</td><td>{{c.csv}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+    {% if is_me %}
+        {% if credit_cards is None %}
+            <h2>Add credit card to activate subscription</h2>
+            <form action='/add-credit-card/' class="pure-form pure-form-stacked" method="POST">
+                {% csrf_token %}
+                <fieldset>
+                    <input type="text" name="credit-card-number" placeholder="Credit card number"></input>
+                    <input type="text" name="credit-card-holder-name" placeholder="Card holder name"></input>
+                    <input type="text" name="credit-card-csv" placeholder="CSV" maxlength="3" size="4"></input><br/>
+                    <input class="pure-button pure-button-primary" type="submit" value="Add credit card"/>
+                </fieldset>
+            </form>
+        {% endif %}
+    {% endif %}
+{% endblock %}

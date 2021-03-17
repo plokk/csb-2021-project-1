@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'exercises.apps.ExercisesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -69,6 +70,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'csb2021_project_1.wsgi.application'
 
+LOGIN_URL = '/login/'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases

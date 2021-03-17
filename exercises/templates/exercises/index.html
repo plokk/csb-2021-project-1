@@ -1,0 +1,23 @@
+{% extends "includes/base.html" %}
+{% block content %}
+    <h1>Exercise database</h1>
+
+    <h2>Latest exercises</h2>
+
+    <table class="pure-table">
+        <thead>
+            <tr>
+                <th>Date</th><th>User</th><th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for e in exercises %}
+                <tr class="{% cycle 'pure-table-odd' '' %}">
+                    <td>{{e.date}}</td>
+                    <td><a href="/profile/{{e.owner.id}}">{{e.owner.username}}</a></td>
+                    <td>{{e.description}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
