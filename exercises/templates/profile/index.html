@@ -28,26 +28,27 @@
             {% endfor %}
         </tbody>
     </table>
-
-    {% if credit_cards %}
-        <h2>Credit card</h2>
-        <table class="pure-table">
-            <thead>
-                <tr>
-                    <th>Number</th><th>Name</th><th>CSV</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for c in credit_cards %}
-                    <tr class="{% cycle 'pure-table-odd' '' %}">
-                        <td>{{c.number}}</td><td>{{c.name}}</td><td>{{c.csv}}</td>
+    {% if is_me %}
+        {% if credit_cards %}
+            <h2>Credit card</h2>
+            <table class="pure-table">
+                <thead>
+                    <tr>
+                        <th>Number</th><th>Name</th><th>CSV</th>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {% for c in credit_cards %}
+                        <tr class="{% cycle 'pure-table-odd' '' %}">
+                            <td>{{c.number}}</td><td>{{c.name}}</td><td>{{c.csv}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
     {% endif %}
     {% if is_me %}
-        {% if credit_cards is None %}
+        {% if not credit_cards %}
             <h2>Add credit card to activate subscription</h2>
             <form action='/add-credit-card/' class="pure-form pure-form-stacked" method="POST">
                 {% csrf_token %}
