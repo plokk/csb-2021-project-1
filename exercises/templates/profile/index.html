@@ -13,7 +13,6 @@
     {% endif %}
 
     <h2>Exercises</h2>
-
     <table class="pure-table">
         <thead>
             <tr>
@@ -22,9 +21,11 @@
         </thead>
         <tbody>
             {% for e in exercises %}
+                {% autoescape off %}
                 <tr class="{% cycle 'pure-table-odd' '' %}">
                     <td>{{e.date}}</td><td>{{e.description}}</td>
                 </tr>
+                {% endautoescape %}
             {% endfor %}
         </tbody>
     </table>
