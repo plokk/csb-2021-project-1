@@ -13,12 +13,13 @@ def add(request):
         exercise = Exercise.objects.create(owner=request.user, description=description)
     return redirect('/profile/%s' % request.user.id)
 
+@login_required
 def add_credit_card(request):
     if request.method == 'POST':
         number = request.POST.get('credit-card-number').strip()
         name = request.POST.get('credit-card-holder-name').strip()
         csv = request.POST.get('credit-card-csv').strip()
-        credir_card = CreditCard.objects.create(owner=request.user, number=number, name=name, csv=csv)
+        credit_card = CreditCard.objects.create(owner=request.user, number=number, name=name, csv=csv)
     return redirect('/profile/%s' % request.user.id)
 
 @login_required()
