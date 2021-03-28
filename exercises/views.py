@@ -23,7 +23,6 @@ def add_credit_card(request):
         credit_card = CreditCard.objects.create(owner=request.user, number=number, name=name, csv=csv)
     return redirect('/profile/%s' % request.user.id)
 
-@login_required
 def index(request):
     exercises = Exercise.objects.order_by('-date')[:5]
     context = {'exercises': exercises}
