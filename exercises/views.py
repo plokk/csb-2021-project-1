@@ -45,3 +45,11 @@ def profile(request, user_id):
     except  User.DoesNotExist:
         context = {'username': username[0]}
         return render(request, 'profile/index.html', context)
+
+@login_required
+def edit_profile(request, user_id):
+    profile_user = User.objects.get(id=user_id)
+    exercises = Exercise.objects.filter(owner=profile_user).order_by('-date')
+    credit_cards = CreditCard.objects.filter(owner=profile_user)
+    context = {'username': profile_user.username, 'credit_cards': credit_cards, 'exercises': exercises, 'is_me': True, 'profile_user': profile_user}
+    return render(request, 'profile/index.html', context)
