@@ -36,7 +36,7 @@ def profile(request, user_id):
     conn.close()
 
     try:
-        profile_user = User.objects.get(id=int(user_id[0]))
+        profile_user = User.objects.get(id=user_id)
         exercises = Exercise.objects.filter(owner=profile_user).order_by('-date')
         credit_cards = CreditCard.objects.filter(owner=profile_user)
         is_me = profile_user == request.user
