@@ -13,6 +13,10 @@
             <li class="pure-menu-item">
                 <a href="/logout" class="pure-menu-link">Logout</a>
             </li>
+        {% else %}
+            <li class="pure-menu-item">
+                <a href="/login?next=/" class="pure-menu-link">Login</a>
+            </li>
         {% endif %}
     </ul>
 </div>
