@@ -1,7 +1,7 @@
 # csb-2021-project-1
 Project for CSB 2021
 
-## Warning! The purpose for this project is to demonstrate security vulnerabilities in Django environment, including:
+## Warning! The purpose of this project is to demonstrate security vulnerabilities in Django environment, including:
 - SQL injections
 - Cross-site scripting (XSS)
 - Leaked secrets
